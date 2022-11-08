@@ -1,0 +1,23 @@
+{
+  "name": "mongodb-api-routes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConnorMurphy9/MongoDB-API-routes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ConnorMurphy9/MongoDB-API-routes/issues"
+  },
+  "homepage": "https://github.com/ConnorMurphy9/MongoDB-API-routes#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
