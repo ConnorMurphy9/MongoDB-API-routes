@@ -1,7 +1,5 @@
-const { Schema, model } = require('mongoose');
-const thoughtSchema = require('./Thought');
-const userSchema = require('./User');
-
+const { Schema, Types } = require('mongoose');
+const mongoose = require('mongoose');
 // Schema to create the User model
 const userSchema = new mongoose.Schema(
 {
@@ -43,6 +41,6 @@ userSchema
 .get(function () {
   return `${this.friends.length}`;
 })
-const User = model('user', userSchema);
+const User = mongoose.model('user', userSchema);
 
 module.exports = User;

@@ -1,6 +1,30 @@
 const { Schema, Types } = require('mongoose');
 // require reaction here?
-const thoughtSchema = new Schema(
+const mongoose = require('mongoose');
+const reactionSchema = new mongoose.Schema(
+    {
+        reactionId: {
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId(),
+        },
+        reactionBody: {
+            type: String,
+            required: true,
+            maxlength: 280,
+        },
+        username: {
+            type: String,
+            required: true,
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+        },
+
+    }
+);
+
+const thoughtSchema = new mongoose.Schema(
     {
         thoughtText: {
             type: String,
@@ -17,14 +41,12 @@ const thoughtSchema = new Schema(
             type: String,
             required: true,
         },
-        reactions: {
-            // Array of nested documents created with the reactionSchema
-        },
+        reactions: [reactionSchema],
     
 
     }
 );
 
-const Thought = model('thought', thoughtSchema);
+const Thought = mongoose.model('thought', thoughtSchema);
 
 module.exports = Thought;
