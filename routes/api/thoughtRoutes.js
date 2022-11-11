@@ -5,16 +5,21 @@ const {
     findAllThoughts,
     findSingleThought,
     createReaction,
-    deleteReaction
-    // updateSingleThought,
-    // deleteSingleThought
+    deleteReaction,
+    updateSingleThought,
+    deleteSingleThought
   } = require('../../controllers/thoughtController.js');
   
-  router.route('/').get(findAllThoughts).post(createNewThought);
+  router.route('/').get(findAllThoughts)
   
+  router.route('/').post(createNewThought);
+
   router.route('/:thoughtId').get(findSingleThought);
   
-  router.route('/api/thoughts/:thoughtId/reactions').post(createReaction);
+  router.route('/updateThought/:thoughtId').put(updateSingleThought);
 
-  // router.route('/api/thoughts/:thoughtId/reactions').delete(deleteReaction)
+  router.route('/deleteThought/:thoughtId').delete(deleteSingleThought)
+
+  router.route('/:thoughtId/reactions').post(createReaction).delete(deleteReaction);
+
   module.exports = router;

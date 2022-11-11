@@ -51,4 +51,38 @@ module.exports = {
       }
     }
   );
-}};
+},
+
+addFriend(req, res) {
+       User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $addToSet: { friends: req.params.friendId} },
+        { new: true }
+      )
+    .then((friend) =>
+      !friend
+        ? res
+            .status(404)
+            .json({ message: 'Friend created, but found no user with that ID' })
+        : res.json('Created the friend!')
+    )
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+  },
+
+  deleteFriends(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $pull: { friends:  req.params.friendId } },
+      { runValidators: true, new: true }
+    )
+      .then((data) =>
+        !data
+          ? res.status(404).json({ message: 'No friend with this id!' })
+          : res.json(data)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+};
